@@ -1,0 +1,14 @@
+name: BungeeBan
+version: 2.6.5
+website: https://www.spigotmc.org/resources/bungeeban.5924/
+author: lucavinci
+main: de.lucavinci.bungeeban.BungeeBan
+commands:
+  ban:
+  unban:
+  tempban:
+  mute:
+  unmute:
+  tempmute:
+  check:
+  kick:

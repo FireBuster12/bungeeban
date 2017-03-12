@@ -1,0 +1,85 @@
+# Welcome to the message configuration file of BungeeBan.
+# Messages are pretty self-explanatory. You can use '&' colour codes.
+prefix: '&8[&6BungeeBan&8] &r'
+remainingtime: '%DAYS% day(s), %HOURS% hour(s), %MINUTES% min(s) and %SECS% sec(s)'
+permanenttime: 'PERMANENT'
+simpledateformat: 'dd.MM.yyyy HH:mm:ss'
+errors:
+  playernotfound: '&cPlayer &e%PLAYERNAME% &ccould not be found in the database.'
+  notbanned: '&cPlayer &e%PLAYERNAME% &cis not banned.'
+  internalerror: '&cInternal error: &e%ERROR%&c.'
+  notonline: '&cPlayer &e%PLAYERNAME% &cis not online.'
+  nopermissions: '&cYou are not allowed to use this.'
+  unknowntimeunit: '&cTimeunit &e%TIMEUNIT% &cis unknown!'
+commands:
+  ban:
+    syntax: '&3Usage: &e/ban <Player> <Reason>'
+    success: '&aYou successfully banned player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been banned by &e%BANNEDBY%&c.'
+    - '&cReason: &e%REASON%'
+    - '&cLength: &e%LENGTH%'
+  tempban:
+    syntax: '&3Usage: &e/tempban <Player> <Time> <Timeunit> <Reason>'
+    success: '&aYou successfully banned player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been banned by &e%BANNEDBY%&c.'
+    - '&cReason: &e%REASON%'
+    - '&cLength: &e%LENGTH%'
+  unban:
+    syntax: '&3Usage: &e/unban <Player>'
+    success: '&aYou successfully unbanned player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been unbanned by &e%UNBANNEDBY%&c.'
+  mute:
+    syntax: '&3Usage: &e/mute <Player> <Reason>'
+    success: '&aYou successfully mute player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been muted by &e%MUTEDBY%&c.'
+    - '&cReason: &e%REASON%'
+    - '&cLength: &e%LENGTH%'
+  tempmute:
+    syntax: '&3Usage: &e/tempmute <Player> <Time> <Timeunit> <Reason>'
+    success: '&aYou successfully muted player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been muted by &e%MUTEDBY%&c.'
+    - '&cReason: &e%REASON%'
+    - '&cLength: &e%LENGTH%'
+  unmute:
+    syntax: '&3Usage: &e/unban <Player>'
+    success: '&aYou successfully unmuted player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been unmuted by &e%UNMUTEDBY%&c.'
+  kick:
+    syntax: '&3Usage: &e/kick <Player> <Reason>'
+    success: '&aYou successfully kicked player &e%PLAYER%&a.'
+    broadcast:
+    - '&cPlayer &e%PLAYER% &chas been kicked by &e%KICKEDBY%&c.'
+    - '&cReason: &e%REASON%'
+  check:
+    syntax: '&3Usage: &e/check <Player>'
+    info:
+    - '&3Playername: &e%PLAYERNAME%'
+    - '&3UUID: &e%UUID%'
+    - '&3Lastjoin: &e%LASTJOIN%'
+    - '&3Banned: &e%ISBANNED%'
+    - '&3Banreason: &e%BANREASON%'
+    - '&3Banned by: &e%BANNEDBY%'
+    - '&3Muted: &e%ISMUTED%'
+    - '&3Mutereason: &e%MUTEREASON%'
+    - '&3Muted by: &e%MUTEDBY%'
+messages:
+  ban:
+  - '&cYou are banned from the server.'
+  - '&cBanned by: &e%BANNEDBY%'
+  - '&cReason: &e%REASON%'
+  - '&cRemaining time: &e%REMAININGTIME%'
+  kick:
+  - '&cYou have been kicked from the server.'
+  - '&cKicked by: &e%KICKEDBY%'
+  - '&cReason: &e%REASON%'
+  mute:
+  - '&cYou are currently muted.'
+  - '&cMuted by: &e%MUTEDBY%'
+  - '&cReason: &e%REASON%'
+  - '&cRemaining time: &e%REMAININGTIME%'
