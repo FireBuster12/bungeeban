@@ -1,6 +1,7 @@
 package de.lucavinci.bungeeban.commands;
 
 import de.lucavinci.bungeeban.BungeeBan;
+import de.lucavinci.bungeeban.util.BungeeBanPlayer;
 import de.lucavinci.bungeeban.util.*;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;

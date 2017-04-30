@@ -1,15 +1,11 @@
 package de.lucavinci.bungeeban.commands;
 
 import de.lucavinci.bungeeban.BungeeBan;
-import de.lucavinci.bungeeban.util.Ban;
 import de.lucavinci.bungeeban.util.BungeeBanCommand;
-import de.lucavinci.bungeeban.util.BungeeBanPlayer;
 import de.lucavinci.bungeeban.util.ConfigManager;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-
-import java.util.UUID;
 
 public class KickCommand extends BungeeBanCommand {
 
