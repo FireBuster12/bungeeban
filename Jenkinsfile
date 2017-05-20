@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                mvn
+                'mvn'
             }
         }
         stage('clean') {
             steps {
-                mvn clean
+                'mvn clean'
             }
         }
     }
