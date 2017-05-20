@@ -14,7 +14,7 @@ import net.md_5.bungee.event.EventHandler;
 public class LoginHandler implements Listener {
 
     @EventHandler
-    public void onLogin(LoginEvent e) {
+    public void onLogin(final LoginEvent e) {
         BungeeCord.getInstance().getScheduler().runAsync(BungeeBan.getInstance(), new Runnable() {
             @Override
             public void run() {
