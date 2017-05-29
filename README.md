@@ -1,5 +1,5 @@
 # BungeeBan
-BungeeBan is a fully customizable and easy to use BungeeCord plugin managing Bans and Mutes, and much more!
+<center>BungeeBan is a fully customizable and easy to use BungeeCord plugin managing Bans and Mutes, and much more!</center>   
 ![alt text](http://i.imgur.com/9wGPH8H.png "")
 
 ### Installation
@@ -12,6 +12,6 @@ BungeeBan is a fully customizable and easy to use BungeeCord plugin managing Ban
 [![alt text](http://i.imgur.com/c5Fa31u.png "")](https://github.com/lucavinci/bungeeban/wiki/Permissions)
 
 ### API Usage
-[![alt text](http://i.imgur.com/c5Fa31u.png "")](https://github.com/lucavinci/bungeeban/wiki/API-Usage)
+[![alt text](http://i.imgur.com/c5Fa31u.png "")](https://github.com/lucavinci/bungeeban/wiki/API-Usage)   
 
-BungeeBan is available [HERE](https://www.spigotmc.org/resources/bungeeban.5924/)
+<center>BungeeBan is available [HERE](https://www.spigotmc.org/resources/bungeeban.5924/)</center>
