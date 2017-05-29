@@ -41,19 +41,23 @@ public class TempbanCommand extends BungeeBanCommand {
                             reason += args[i] + " ";
                         }
                         Ban ban = new Ban(uuid, sender.getName(), reason, millis);
-                        bbp.ban(ban);
+                        boolean cancelled = !bbp.ban(ban);
                         bbp.save();
-                        sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("commands.tempban.success").replace("%PLAYER%", playername));
-                        for(ProxiedPlayer o : BungeeCord.getInstance().getPlayers()) {
-                            if(o.hasPermission(ConfigManager.cv("general.permissions.ban-broadcast"))) {
-                                for(String line : ConfigManager.txt3("commands.ban.broadcast")) {
-                                    line = line.replace("%PLAYER%", playername);
-                                    line = line.replace("%BANNEDBY%", sender.getName());
-                                    line = line.replace("%REASON%", reason);
-                                    line = line.replace("%LENGTH%", units + " " + timeunit);
-                                    o.sendMessage(BungeeBan.PREFIX + line);
+                        if(!cancelled) {
+                            sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("commands.tempban.success").replace("%PLAYER%", playername));
+                            for (ProxiedPlayer o : BungeeCord.getInstance().getPlayers()) {
+                                if (o.hasPermission(ConfigManager.cv("general.permissions.ban-broadcast"))) {
+                                    for (String line : ConfigManager.txt3("commands.ban.broadcast")) {
+                                        line = line.replace("%PLAYER%", playername);
+                                        line = line.replace("%BANNEDBY%", sender.getName());
+                                        line = line.replace("%REASON%", reason);
+                                        line = line.replace("%LENGTH%", units + " " + timeunit);
+                                        o.sendMessage(BungeeBan.PREFIX + line);
+                                    }
                                 }
                             }
+                        } else {
+                            sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.internalerror").replace("%ERROR%", "The ban was cancelled by an event"));
                         }
                     } else {
                         sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.unknowntimeunit").replace("%TIMEUNIT%", args[2]));

@@ -32,19 +32,23 @@ public class MuteCommand extends BungeeBanCommand {
                         reason += args[i] + " ";
                     }
                     Mute mute = new Mute(uuid, sender.getName(), reason, -1);
-                    bbp.mute(mute);
+                    boolean cancelled = !bbp.mute(mute);
                     bbp.save();
-                    sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("commands.mute.success").replace("%PLAYER%", playername));
-                    for(ProxiedPlayer o : BungeeCord.getInstance().getPlayers()) {
-                        if(o.hasPermission(ConfigManager.cv("general.permissions.mute-broadcast"))) {
-                            for(String line : ConfigManager.txt3("commands.mute.broadcast")) {
-                                line = line.replace("%PLAYER%", playername);
-                                line = line.replace("%MUTEDBY%", sender.getName());
-                                line = line.replace("%REASON%", reason);
-                                line = line.replace("%LENGTH%", ConfigManager.txt("permanenttime"));
-                                o.sendMessage(BungeeBan.PREFIX + line);
+                    if(!cancelled) {
+                        sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("commands.mute.success").replace("%PLAYER%", playername));
+                        for (ProxiedPlayer o : BungeeCord.getInstance().getPlayers()) {
+                            if (o.hasPermission(ConfigManager.cv("general.permissions.mute-broadcast"))) {
+                                for (String line : ConfigManager.txt3("commands.mute.broadcast")) {
+                                    line = line.replace("%PLAYER%", playername);
+                                    line = line.replace("%MUTEDBY%", sender.getName());
+                                    line = line.replace("%REASON%", reason);
+                                    line = line.replace("%LENGTH%", ConfigManager.txt("permanenttime"));
+                                    o.sendMessage(BungeeBan.PREFIX + line);
+                                }
                             }
                         }
+                    } else {
+                        sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.internalerror").replace("%ERROR%", "The mute was cancelled by an event"));
                     }
                 } else {
                     sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.playernotfound").replace("%PLAYERNAME%", playername));

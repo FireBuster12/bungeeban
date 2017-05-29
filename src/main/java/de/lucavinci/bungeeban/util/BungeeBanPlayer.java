@@ -1,6 +1,10 @@
 package de.lucavinci.bungeeban.util;
 
 import de.lucavinci.bungeeban.BungeeBan;
+import de.lucavinci.bungeeban.events.BungeeBanEvent;
+import de.lucavinci.bungeeban.events.BungeeMuteEvent;
+import de.lucavinci.bungeeban.events.BungeeUnbanEvent;
+import de.lucavinci.bungeeban.events.BungeeUnmuteEvent;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -100,34 +104,58 @@ public class BungeeBanPlayer implements DBObject {
         return this.getActiveMute() != null;
     }
 
-    public void ban(Ban ban) {
-        this.unban();
-        this.bans.add(ban);
-        this.save();
-        ban.save();
-        if(this.toProxiedPlayer() != null) {
-            this.toProxiedPlayer().disconnect(this.getBanMessage());
+    public boolean ban(Ban ban) {
+        BungeeBanEvent event = new BungeeBanEvent(this.uuid, ban);
+        BungeeCord.getInstance().getPluginManager().callEvent(event);
+        if(!event.isCancelled()) {
+            this.unban();
+            this.bans.add(ban);
+            this.save();
+            ban.save();
+            if (this.toProxiedPlayer() != null) {
+                this.toProxiedPlayer().disconnect(this.getBanMessage());
+            }
+            return true;
         }
+        return false;
     }
 
-    public void mute(Mute mute) {
-        this.unmute();
-        this.mutes.add(mute);
-        this.save();
-        mute.save();
+    public boolean mute(Mute mute) {
+        BungeeMuteEvent event = new BungeeMuteEvent(this.uuid, mute);
+        BungeeCord.getInstance().getPluginManager().callEvent(event);
+        if(!event.isCancelled()) {
+            this.unmute();
+            this.mutes.add(mute);
+            this.save();
+            mute.save();
+            return true;
+        }
+        return false;
     }
 
     public void unban() {
         for(Ban b : this.bans) {
-            b.setActive(false);
-            b.save();
+            if(b.isValid() && b.isActive()) {
+                BungeeUnbanEvent event = new BungeeUnbanEvent(this.uuid, b);
+                BungeeCord.getInstance().getPluginManager().callEvent(event);
+                if(!event.isCancelled()) {
+                    b.setActive(false);
+                    b.save();
+                }
+            }
         }
     }
 
     public void unmute() {
         for(Mute m : this.mutes) {
-            m.setActive(false);
-            m.save();
+            if(m.isValid() && m.isActive()) {
+                BungeeUnmuteEvent event = new BungeeUnmuteEvent(this.uuid, m);
+                BungeeCord.getInstance().getPluginManager().callEvent(event);
+                if(!event.isCancelled()) {
+                    m.setActive(false);
+                    m.save();
+                }
+            }
         }
     }
 
