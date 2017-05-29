@@ -1,6 +1,6 @@
 # BungeeBan
 <center>BungeeBan is a fully customizable and easy to use BungeeCord plugin managing Bans and Mutes, and much more!</center>   
-
+   
 ![alt text](http://i.imgur.com/9wGPH8H.png "")
 
 ### Installation
