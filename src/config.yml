@@ -14,6 +14,7 @@ sql:
     password: '123abc'
     database: 'bb'
 general:
+  asyncbancheck: true
   permissions:
     ban: 'lucavinci.bungeeban.ban'
     tempban: 'lucavinci.bungeeban.tempban'

@@ -38,6 +38,7 @@ public class ConfigManager {
                 break;
         }
         BungeeBan.PREFIX = txt("prefix");
+        __performVersionUpgrades();
     }
 
     public static Config cfg() {
@@ -70,6 +71,13 @@ public class ConfigManager {
             lines.add(ChatColor.translateAlternateColorCodes('&', line));
         }
         return lines;
+    }
+
+    private static void __performVersionUpgrades() {
+        if(cfg().c().get("general.asyncbancheck") == null) {
+            cfg().c().set("general.asyncbancheck", true);
+            cfg().save();
+        }
     }
 
 }
