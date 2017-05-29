@@ -40,7 +40,7 @@ public class TempbanCommand extends BungeeBanCommand {
                         for(int i = 3; i < args.length; i++) {
                             reason += args[i] + " ";
                         }
-                        if(!BungeeCord.getInstance().getPlayerByOfflineUUID(uuid).hasPermission(ConfigManager.cv("general.permissions.exempt.ban"))) {
+                        if(!BungeeBan.getApi().hasPermissions(uuid, ConfigManager.cv("general.permissions.exempt.ban"))) {
                             Ban ban = new Ban(uuid, sender.getName(), reason, millis);
                             boolean cancelled = !bbp.ban(ban);
                             bbp.save();

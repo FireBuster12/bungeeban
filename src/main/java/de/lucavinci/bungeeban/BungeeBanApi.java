@@ -1,6 +1,7 @@
 package de.lucavinci.bungeeban;
 
 import de.lucavinci.bungeeban.util.BungeeBanPlayer;
+import net.md_5.bungee.BungeeCord;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,6 +90,13 @@ public class BungeeBanApi implements Runnable {
         BungeeBanPlayer bbp = new BungeeBanPlayer(uuid, playername);
         PLAYERS_CACHE.add(bbp);
         return bbp;
+    }
+
+    public boolean hasPermissions(UUID uuid, String permission) {
+        if(BungeeCord.getInstance().getPlayer(uuid) != null) {
+            return BungeeCord.getInstance().getPlayer(uuid).hasPermission(permission);
+        }
+        return false;
     }
 
     @Override

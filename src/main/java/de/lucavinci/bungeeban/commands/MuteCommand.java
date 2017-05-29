@@ -31,7 +31,7 @@ public class MuteCommand extends BungeeBanCommand {
                     for(int i = 1; i < args.length; i++) {
                         reason += args[i] + " ";
                     }
-                    if(!BungeeCord.getInstance().getPlayerByOfflineUUID(uuid).hasPermission(ConfigManager.cv("general.permissions.exempt.mute"))) {
+                    if(!BungeeBan.getApi().hasPermissions(uuid, ConfigManager.cv("general.permissions.exempt.mute"))) {
                         Mute mute = new Mute(uuid, sender.getName(), reason, -1);
                         boolean cancelled = !bbp.mute(mute);
                         bbp.save();
