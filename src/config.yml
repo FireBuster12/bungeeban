@@ -27,3 +27,7 @@ general:
     kick: 'lucavinci.bungeeban.kick'
     kick-broadcast: 'lucavinci.bungeeban.kickbroadcast'
     check: 'lucavinci.bungeeban.check'
+    exempt:
+      ban: 'lucavinci.bungeeban.ban.exempt'
+      mute: 'lucavinci.bungeeban.mute.exempt'
+      kick: 'lucavinci.bungeeban.kick.exempt'

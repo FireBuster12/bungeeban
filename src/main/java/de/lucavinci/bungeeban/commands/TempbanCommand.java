@@ -40,24 +40,28 @@ public class TempbanCommand extends BungeeBanCommand {
                         for(int i = 3; i < args.length; i++) {
                             reason += args[i] + " ";
                         }
-                        Ban ban = new Ban(uuid, sender.getName(), reason, millis);
-                        boolean cancelled = !bbp.ban(ban);
-                        bbp.save();
-                        if(!cancelled) {
-                            sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("commands.tempban.success").replace("%PLAYER%", playername));
-                            for (ProxiedPlayer o : BungeeCord.getInstance().getPlayers()) {
-                                if (o.hasPermission(ConfigManager.cv("general.permissions.ban-broadcast"))) {
-                                    for (String line : ConfigManager.txt3("commands.ban.broadcast")) {
-                                        line = line.replace("%PLAYER%", playername);
-                                        line = line.replace("%BANNEDBY%", sender.getName());
-                                        line = line.replace("%REASON%", reason);
-                                        line = line.replace("%LENGTH%", units + " " + timeunit);
-                                        o.sendMessage(BungeeBan.PREFIX + line);
+                        if(!BungeeCord.getInstance().getPlayerByOfflineUUID(uuid).hasPermission(ConfigManager.cv("general.permissions.exempt.ban"))) {
+                            Ban ban = new Ban(uuid, sender.getName(), reason, millis);
+                            boolean cancelled = !bbp.ban(ban);
+                            bbp.save();
+                            if (!cancelled) {
+                                sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("commands.tempban.success").replace("%PLAYER%", playername));
+                                for (ProxiedPlayer o : BungeeCord.getInstance().getPlayers()) {
+                                    if (o.hasPermission(ConfigManager.cv("general.permissions.ban-broadcast"))) {
+                                        for (String line : ConfigManager.txt3("commands.ban.broadcast")) {
+                                            line = line.replace("%PLAYER%", playername);
+                                            line = line.replace("%BANNEDBY%", sender.getName());
+                                            line = line.replace("%REASON%", reason);
+                                            line = line.replace("%LENGTH%", units + " " + timeunit);
+                                            o.sendMessage(BungeeBan.PREFIX + line);
+                                        }
                                     }
                                 }
+                            } else {
+                                sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.internalerror").replace("%ERROR%", "The ban was cancelled by an event"));
                             }
                         } else {
-                            sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.internalerror").replace("%ERROR%", "The ban was cancelled by an event"));
+                            sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.internalerror").replace("%ERROR%", "You can't ban this player"));
                         }
                     } else {
                         sender.sendMessage(BungeeBan.PREFIX + ConfigManager.txt("errors.unknowntimeunit").replace("%TIMEUNIT%", args[2]));

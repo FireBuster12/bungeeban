@@ -74,9 +74,15 @@ public class ConfigManager {
     }
 
     private static void __performVersionUpgrades() {
-        if(cfg().c().get("general.asyncbancheck") == null) {
-            cfg().c().set("general.asyncbancheck", true);
-            cfg().save();
+        if(config.c().get("general.asyncbancheck") == null) {
+            config.c().set("general.asyncbancheck", true);
+            config.save();
+        }
+        if(config.c().get("general.permissions.exempt") == null) {
+            config.c().set("general.permissions.exempt.ban", "lucavinci.bungeeban.ban.exempt");
+            config.c().set("general.permissions.exempt.mute", "lucavinci.bungeeban.mute.exempt");
+            config.c().set("general.permissions.exempt.kick", "lucavinci.bungeeban.kick.exempt");
+            config.save();
         }
     }
 
