@@ -33,7 +33,7 @@ public class LoginHandler implements Listener {
             bbp.save();
             if (bbp.getActiveBan() != null) {
                 e.setCancelled(true);
-                bbp.toProxiedPlayer().disconnect(bbp.getBanMessage());
+                e.setCancelReason(bbp.getBanMessage());
             }
         }
     }
