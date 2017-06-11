@@ -6,14 +6,14 @@ package de.lucavinci.bungeeban.util;
  */
 public enum TimeUnit {
 
-    MILLISECOND(1, new String[]{"milliseconds", "millisecond", "millis", "milli", "mil", "mils"}),
-    SECOND(1000, new String[]{"seconds", "second", "secs", "sec", "s"}),
-    MINUTE(60 * 1000, new String[]{"minutes", "minute", "mins", "min", "m"}),
-    HOUR(60 * 60 * 1000, new String[]{"hours", "hour", "h"}),
-    DAY(24 * 60 * 60 * 1000, new String[]{"days", "day", "d"}),
-    WEEK(7 * 24 * 60 * 60 * 1000, new String[]{"weeks", "week", "w"}),
-    MONTH(30 * 24 * 60 * 60 * 1000, new String[]{"months", "month", "mon"}),
-    YEAR(365 * 24 * 60 * 60 * 1000, new String[]{"years", "year", "y"});
+    MILLISECOND(1L, new String[]{"milliseconds", "millisecond", "millis", "milli", "mil", "mils"}),
+    SECOND(1000L, new String[]{"seconds", "second", "secs", "sec", "s"}),
+    MINUTE(60L * 1000L, new String[]{"minutes", "minute", "mins", "min", "m"}),
+    HOUR(60L * 60L * 1000L, new String[]{"hours", "hour", "h"}),
+    DAY(24L * 60L * 60L * 1000L, new String[]{"days", "day", "d"}),
+    WEEK(7L * 24L * 60L * 60L * 1000L, new String[]{"weeks", "week", "w"}),
+    MONTH(30L * 24L * 60L * 60L * 1000L, new String[]{"months", "month", "mon"}),
+    YEAR(365L * 24L * 60L * 60L * 1000L, new String[]{"years", "year", "y"});
 
     private long milliseconds;
     private String[] names;

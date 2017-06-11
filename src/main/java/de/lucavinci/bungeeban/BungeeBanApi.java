@@ -15,7 +15,10 @@ public class BungeeBanApi implements Runnable {
 
     private static final CopyOnWriteArrayList<BungeeBanPlayer> PLAYERS_CACHE = new CopyOnWriteArrayList<>();
 
-    protected BungeeBanApi() {
+    /**
+     * Only package private access to the constructor so only the BungeeBan class can create an instance.
+     */
+    BungeeBanApi() {
 
     }
 
@@ -92,6 +95,13 @@ public class BungeeBanApi implements Runnable {
         return bbp;
     }
 
+    /**
+     * Checks whether a player has the given permission.
+     * This method is not properly working yet as it can not check the permissions of offline players.
+     * @param uuid UUID of the player
+     * @param permission Permission string to check
+     * @return true, if the player has the given permission, false, if not
+     */
     public boolean hasPermissions(UUID uuid, String permission) {
         if(BungeeCord.getInstance().getPlayer(uuid) != null) {
             return BungeeCord.getInstance().getPlayer(uuid).hasPermission(permission);
